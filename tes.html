@@ -44,10 +44,22 @@
       light.position.set(1, 1, 1);
       scene.add(light);
 
+      let isRotationEnabled = true;
+
+      function handleKeyDown(event) {
+        if (event.code === "Space") {
+          isRotationEnabled = !isRotationEnabled;
+        }
+      }
+
+      document.addEventListener("keydown", handleKeyDown);
+
       function animate() {
         requestAnimationFrame(animate);
-        cube.rotation.x += 0.01;
-        cube.rotation.y += 0.01;
+        if (isRotationEnabled) {
+          cube.rotation.x += 0.01;
+          cube.rotation.y += 0.01;
+        }
         renderer.render(scene, camera);
       }
       animate();
